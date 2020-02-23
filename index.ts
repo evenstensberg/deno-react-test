@@ -3,8 +3,7 @@ import { createRequire } from "https://deno.land/std@v0.34.0/node/module.ts";
 
 (window as any).process = {
   browser: true,
-  env: {
-  },
+  env: {},
 };
 
 const self = window.unescape(import.meta.url.substring(7));
@@ -31,22 +30,22 @@ const node = html`
 
 
 function renderStatic(node: any): any {
-  if(typeof node === 'string') {
+  if (typeof node === 'string') {
     return node;
   }
 
-  if(Array.isArray(node)) {
+  if (Array.isArray(node)) {
     let n = '';
-    node.forEach(no => n+=renderStatic(no));
+    node.forEach(no => n += renderStatic(no));
     return n;
   }
-  else if(!(node.type instanceof Function)) {
+  else if (!(node.type instanceof Function)) {
     let o = '';
     Object.keys(node.props).forEach((p: any) => o += renderStatic(node.props[p]));
-    return `<${node.type}>` + o +  `</${node.type}>\n`;
+    return `<${node.type}>` + o + `</${node.type}>\n`;
   }
 
-  else if(node.type instanceof Function) {
+  else if (node.type instanceof Function) {
     return renderStatic(node.type());
   }
 }
