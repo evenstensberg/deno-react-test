@@ -4,5 +4,5 @@ Testing React and Deno
 ## Usage
 
 ```sh
-$  deno --allow-net  --allow-read ./index.ts                  
+$  yarn && deno --allow-net  --allow-read ./index.ts                  
 ```
